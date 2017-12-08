@@ -23,7 +23,7 @@ delete_older_than=$close_older_than
 curl -s -XGET "$es_host:9200/_cat/indices?v&pretty" | grep -v kibana > $indices
 
 #grep open indices
-cat $indices | grep open > $open_indices
+cat $indices | grep open | awk '{print$3}' > $open_indices
 
 #grep close indices
 cat $indices | grep close |awk '{print $2}'> $closed_indices
